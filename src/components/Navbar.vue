@@ -5,9 +5,13 @@ const { openMenu } = defineProps(['openMenu']);
 // const isDropdownOpen = ref(false);
 const setCurrentPage = page => {
   currentPage.value = page;
+  setTimeout(() => {
+    currentPage.value = null;
+  }, 100);
 };
 
 watch(currentPage, (newVal, _) => {
+  if (!currentPage) return;
   switch (newVal) {
     case 'home':
       window.scrollTo(0, 0);
@@ -15,6 +19,7 @@ watch(currentPage, (newVal, _) => {
     case 'about':
     case 'courses':
     case 'testimonials':
+    case 'contact':
       if (document.querySelector(`.${newVal}`)) {
         document.querySelector(`.${newVal}`).scrollIntoView();
       } else {
@@ -28,7 +33,7 @@ watch(currentPage, (newVal, _) => {
 
 <template>
   <nav class="navbar">
-    <div class="navbar__logo">
+    <div class="navbar__logo" @click="setCurrentPage('home')">
       <span>GanitAnk</span>
     </div>
     <div class="navbar__links">
@@ -92,7 +97,9 @@ watch(currentPage, (newVal, _) => {
         </button>
       </div>
       <div class="navbar__contact">
-        <button class="navbar__cta">Contact Us</button>
+        <button class="navbar__cta" @click="setCurrentPage('contact')">
+          Contact Us
+        </button>
       </div>
     </div>
   </nav>

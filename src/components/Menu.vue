@@ -55,7 +55,7 @@ onMounted(() => {
         <li class="menu__item" @click="goToPage('testimonials')">
           Testimonials
         </li>
-        <li class="menu__item" @click="goToPage('contact')">Courses</li>
+        <li class="menu__item" @click="goToPage('contact')">Contact Us</li>
       </ul>
     </div>
   </div>
