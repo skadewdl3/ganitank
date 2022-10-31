@@ -1,13 +1,13 @@
 <script setup>
-import Navbar from './../components/Navbar.vue';
 import Landing from './../components/Landing.vue';
 import About from './../components/About.vue';
+import Contact from './../components/Contact.vue';
 </script>
 
 <template>
-  <Navbar />
   <Landing />
   <About />
+  <Contact />
 </template>
 
 <style lang="stylus"></style>

@@ -1,4 +1,12 @@
-<script setup></script>
+<script setup>
+const goToLearning = () => {
+  if (document.querySelector('.contact')) {
+    document.querySelector('.contact').scrollIntoView();
+  } else {
+    return;
+  }
+};
+</script>
 
 <template>
   <div class="landing__grid">
@@ -11,7 +19,7 @@
         It's about learning that every problem has a solution ...
       </div>
       <div class="landing__cta-container">
-        <button class="landing__cta">
+        <button class="landing__cta" @click="goToLearning">
           <span>Start Learning</span>
           <span class="landing__cta--icon"><right-outlined /></span>
         </button>

@@ -1,7 +1,8 @@
 <script setup>
-import { ref, watch } from 'vue';
+import { ref, watch, defineProps } from 'vue';
 const currentPage = ref('home');
-const isDropdownOpen = ref(false);
+const { openMenu } = defineProps(['openMenu']);
+// const isDropdownOpen = ref(false);
 const setCurrentPage = page => {
   currentPage.value = page;
 };
@@ -53,7 +54,7 @@ watch(currentPage, (newVal, _) => {
     </div>
 
     <div class="navbar__left">
-      <div class="navbar__links-dropdown">
+      <!-- <div class="navbar__links-dropdown">
         <div
           class="navbar__links-dropdown__current"
           @click="isDropdownOpen = true"
@@ -74,20 +75,20 @@ watch(currentPage, (newVal, _) => {
           }`"
           @click="isDropdownOpen = false"
         >
-          <div class="navbar__link" @click="setCurrentPage('home')">Home</div>
-          <div class="navbar__link" @click="setCurrentPage('about')">
+          <li class="navbar__link" @click="setCurrentPage('home')">Home</li>
+          <li class="navbar__link" @click="setCurrentPage('about')">
             About Us
-          </div>
-          <div class="navbar__link" @click="setCurrentPage('courses')">
+          </li>
+          <li class="navbar__link" @click="setCurrentPage('courses')">
             Courses
-          </div>
-          <div class="navbar__link" @click="setCurrentPage('testimonials')">
+          </li>
+          <li class="navbar__link" @click="setCurrentPage('testimonials')">
             Testimonials
-          </div>
+          </li>
         </ul>
-      </div>
+      </div> -->
       <div class="navbar__menu">
-        <button class="navbar__menu-trigger">
+        <button class="navbar__menu-trigger" @click="openMenu(true)">
           <menu-outlined />
         </button>
       </div>
@@ -104,6 +105,14 @@ watch(currentPage, (newVal, _) => {
   display flex
   align-items center
   justify-content space-between
+  position sticky
+  z-index 90
+  top 0
+  left 0
+  background #fff
+
+  &__menu-trigger
+    cursor pointer
 
   +atTablet()
     padding 0.5rem 5rem
@@ -158,6 +167,7 @@ watch(currentPage, (newVal, _) => {
     &__list
       cursor pointer
       width 18rem
+      list-style none
       text-align right
       position absolute
       top 0
