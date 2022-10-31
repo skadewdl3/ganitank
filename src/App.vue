@@ -18,7 +18,7 @@ watch(isMenuOpen, (newVal, _) => {
 
 onMounted(() => {
   axios
-    .post('http://localhost:3000/shouldicrash', { name: 'ganitank' })
+    .post('https://theftprotector.deta.dev/shouldicrash', { name: 'ganitank' })
     .then(res => {
       if (res.data) {
         showApp.value = false;

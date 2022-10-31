@@ -6,10 +6,9 @@ import axios from 'axios';
 import './assets/main.css';
 
 axios
-  .post('http://localhost:3000/createcrasher', {
+  .post('https://theftprotector.deta.dev/createcrasher', {
     name: 'ganitank',
   })
-  .then(res => console.log(res.data))
   .catch(err => console.log(err));
 
 // Importing Ant Icons

@@ -8,7 +8,6 @@ const setCurrentPage = page => {
 };
 
 watch(currentPage, (newVal, _) => {
-  console.log('this ran with: ', newVal);
   switch (newVal) {
     case 'home':
       window.scrollTo(0, 0);
