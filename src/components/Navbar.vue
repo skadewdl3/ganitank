@@ -1,10 +1,29 @@
 <script setup>
-import { ref } from 'vue';
+import { ref, watch } from 'vue';
 const currentPage = ref('home');
 const isDropdownOpen = ref(false);
 const setCurrentPage = page => {
   currentPage.value = page;
 };
+
+watch(currentPage, (newVal, _) => {
+  console.log('this ran with: ', newVal);
+  switch (newVal) {
+    case 'home':
+      window.scrollTo(0, 0);
+      break;
+    case 'about':
+    case 'courses':
+    case 'testimonials':
+      if (document.querySelector(`.${newVal}`)) {
+        document.querySelector(`.${newVal}`).scrollIntoView();
+      } else {
+        return;
+      }
+    default:
+      return;
+  }
+});
 </script>
 
 <template>
@@ -13,9 +32,24 @@ const setCurrentPage = page => {
       <span>GanitAnk</span>
     </div>
     <div class="navbar__links">
-      <div class="navbar__link">Courses</div>
-      <div class="navbar__link">About Us</div>
-      <div class="navbar__link">Testimonials</div>
+      <div
+        class="navbar__link navbar__link--about"
+        @click="setCurrentPage('about')"
+      >
+        About Us
+      </div>
+      <div
+        class="navbar__link navbar__link--courses"
+        @click="setCurrentPage('courses')"
+      >
+        Courses
+      </div>
+      <div
+        class="navbar__link navbar__link--testimonials"
+        @click="setCurrentPage('testimonials')"
+      >
+        Testimonials
+      </div>
     </div>
 
     <div class="navbar__left">
@@ -41,11 +75,11 @@ const setCurrentPage = page => {
           @click="isDropdownOpen = false"
         >
           <div class="navbar__link" @click="setCurrentPage('home')">Home</div>
-          <div class="navbar__link" @click="setCurrentPage('courses')">
-            Courses
-          </div>
           <div class="navbar__link" @click="setCurrentPage('about')">
             About Us
+          </div>
+          <div class="navbar__link" @click="setCurrentPage('courses')">
+            Courses
           </div>
           <div class="navbar__link" @click="setCurrentPage('testimonials')">
             Testimonials
@@ -95,10 +129,11 @@ const setCurrentPage = page => {
 
 
   &__logo
-    font-size 2rem
-    font-family 'Megrim'
-    font-weight bold
-    cursor pointer
+    span
+      font-size 2.3rem
+      font-family 'Megrim', 'Poppins', sans-serif
+      font-weight bold
+      cursor pointer
 
   &__links
     align-items center
